@@ -38,6 +38,7 @@ public class ProduceBenchmark {
     @Benchmark
     @BenchmarkMode({Mode.AverageTime, Mode.SampleTime})
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    // 토픽의 파티션이 한 개일 경우
     public void measureUnpartitioned() {
         producer.send(new ProducerRecord<>("benchmark_latency_unpartitioned", Integer.toString(key), value));
         key++;
@@ -46,6 +47,7 @@ public class ProduceBenchmark {
     @Benchmark
     @BenchmarkMode({Mode.AverageTime, Mode.SampleTime})
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    // 토픽의 파티션이 두 개일 경우
     public void measureTwoPartitioned() {
         producer.send(new ProducerRecord<>("benchmark_latency_partitioned", Integer.toString(key), value));
         key++;
@@ -54,6 +56,7 @@ public class ProduceBenchmark {
     @Benchmark
     @BenchmarkMode({Mode.AverageTime, Mode.SampleTime})
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    // 토픽의 파티션이 세 개일 경우
     public void measureTenPartitioned() {
         producer.send(new ProducerRecord<>("benchmark_latency_partitioned_ten", Integer.toString(key), value));
         key++;
